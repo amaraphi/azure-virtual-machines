@@ -44,10 +44,26 @@ Before we get started we need to think about what our objectives are. In this la
 On the Azure portal homepage, click "Resource Groups." Alternatively, you can use the search bar to search for resource gruops. Click "create" to create a new resource group, "RG-1," which will be contained inside of your current Azure subscription.
 </p>
 <p>
-<img src="https://github.com/amaraphi/azure-network-protocols/assets/144752187/a8426ecf-ee78-4099-b87b-9714d31c1dc9/>
+<img src="https://github.com/amaraphi/azure-network-protocols/assets/144752187/a8426ecf-ee78-4099-b87b-9714d31c1dc9"/>
 </p>
-
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+<b>Next, let's create our first virtual machines.</b> We'll first create a VM with a Windows 10 OS. In the Azure portal search for 
+"virtual machines." Once in the virtual machiens default directory, click "Create --> Azure Virtual Machine."
+Select the resource group you just created. DOuble-check to make sure that your VM is within this resource group. Remember, our virtual network environment will be within this resource group. 
 </p>
+<p>
+  Scrolling down to "Instance Details," select your apprpriate region. Keep note of the region selected -- both your VMs will need to be within the same region. Though optional, you can select a redunancy option to protect against data loss.
+</p>
+  <p>
+    <img src="https://github.com/amaraphi/azure-network-protocols/assets/144752187/d8c54a26-664a-4947-bdbf-14bc0066f128"/>
+</p>
+<p>Under "Image," select "Windows 10 Pro." Under "Size," select a Standard machine with 2-4 CPUs.</p>
+<p><img src="https://github.com/amaraphi/azure-network-protocols/assets/144752187/9beb90ea-d35c-4417-a552-70271bf7b0cf"/>
+</p>
+<p>Under "Administrator Account" create a username and password. For the sake of this lab we'll have a generic username, lab_user. This username and password will be used to remotely log in to our VM. Under "Inbound Port Rules," note that only inbound RDP traffic is accessible to our VM from the internet. Click "Review and Create." On the Validation page, if we scroll down to "Networking," we can observe that a virtual network, subnet, and public IP address has been created for our VM. Click "Create." </p>
+<p><img src="https://github.com/amaraphi/azure-network-protocols/assets/144752187/7a6544c0-92fd-4d9a-98d8-5f5c32f5fa07"/>
+</p>
+<p>Repeating the same steps above, create another VM. Again, this VM should be inside of the same resource group, RG-1, as your Windows 10 VM. Select the same region as VM-1. Under image, we're selecting an Ubuntu Server.</p>
+<img src="https://github.com/amaraphi/azure-network-protocols/assets/144752187/ab358ffb-0770-4765-8298-fa5577f86fb1"/>
+Scrolling down to "Administrator Account," select "Password" under "Authentication Type." This will prompt us to enter a username and password in order for us to remotely access our Ubuntu machine later in our lab. Observe that under "inbound port rules," our newly-created VM's SSH port 22 will be open and accessible from the Internet.
 <br />
