@@ -1,8 +1,4 @@
-<p align="center">
-<img src="https://i.imgur.com/Ua7udoS.png" alt="Traffic Examination"/>
-</p>
-
-<h1>Setting up Virtual Machines within Azure and Observing Virtual Network Topology</h1>
+<h1>Tutorial: Setting up Virtual Machines within Azure and Observing Virtual Network Topology</h1>
 In this tutorial, we'll create two virtual machines within Azure, connect them with a virtual network and subnet,  <br />
 
 <h2>Environments and Technologies Used</h2>
