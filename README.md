@@ -2,16 +2,15 @@
 <img src="https://i.imgur.com/Ua7udoS.png" alt="Traffic Examination"/>
 </p>
 
-<h1>Network Security Groups (NSGs) and Inspecting Traffic Between Azure Virtual Machines</h1>
-In this tutorial, we observe various network traffic to and from Azure Virtual Machines with Wireshark as well as experiment with Network Security Groups. <br />
+<h1>Setting up Virtual Machines within Azure and Observing Virtual Network Topology</h1>
+In this tutorial, we'll create two virtual machines within Azure, connect them with a virtual network and subnet,  <br />
 
 <h2>Environments and Technologies Used</h2>
 
-- Microsoft Azure (Virtual Machines/Compute)
-- Remote Desktop
-- Various Command-Line Tools
-- Various Network Protocols (SSH, RDH, DNS, HTTP/S, ICMP)
-- Wireshark (Protocol Analyzer)
+- Microsoft Azure
+- Virtual Machines
+- Virtual Networks (VNets), NICs, public IP addresses, and Network Security Groups
+- Network Topology Visualization
 
 <h2>Operating Systems Used </h2>
 
@@ -20,13 +19,11 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 <h2>High-Level Steps</h2>
 
-- Create Resources and Virtual Machines VM-1 and VM-2
-- Connect to VM-1 using Windows Virtual Desktop
-- Install Wireshark on VM-1
-- Filter and Observe ICMP Traffic
-- Filter and Observe SSH Traffic
-- Filter and Observe DNS Traffic
-- Filter and Observe RDP Traffic
+- Create a resource group
+- Create a Windows 10 virtual machine
+- Create a virtual network, or VNET
+- Create an Ubuntu Virtual Machine
+- Observe Network Compoonents with Network Watcher
 
 <h2>Actions and Observations</h2>
 
@@ -65,5 +62,26 @@ Select the resource group you just created. DOuble-check to make sure that your 
 </p>
 <p>Repeating the same steps above, create another VM. Again, this VM should be inside of the same resource group, RG-1, as your Windows 10 VM. Select the same region as VM-1. Under image, we're selecting an Ubuntu Server.</p>
 <img src="https://github.com/amaraphi/azure-network-protocols/assets/144752187/ab358ffb-0770-4765-8298-fa5577f86fb1"/>
-Scrolling down to "Administrator Account," select "Password" under "Authentication Type." This will prompt us to enter a username and password in order for us to remotely access our Ubuntu machine later in our lab. Observe that under "inbound port rules," our newly-created VM's SSH port 22 will be open and accessible from the Internet.
+Scrolling down to "Administrator Account," select "Password" under "Authentication Type." This will prompt us to enter a username and password in order for us to remotely access our Ubuntu machine later in our lab. 
+<img src="https://github.com/amaraphi/azure-network-protocols/assets/144752187/42eb0a12-78e9-4a4a-8306-438de3e8ce3d"/>
+
+     Observe that under "inbound port rules," our newly-created VM's SSH port 22 will be open and accessible from the Internet.
+     Click "Review and Create." Observe that our Ubuntu VM, VM-2, has been automatically placed within VM-1's virtual network. VM-2 has also been assigned its own public IP address. It is also part of a 10.0.0.0/24 subnet, identical to VM-1's. This means that VM-2's private IP address will be located within the same subnet, enabling both machines to communicate and exchange data over the private network.
+   <img src="https://github.com/amaraphi/azure-network-protocols/assets/144752187/d2281b17-bc67-44d4-9199-54ec3c34f6db"/>
+Now that we have created both virtual machines, we can see all of our newly generated resources within the RG-1 resource group. On the Azure home portal, click "Resource Groups" and open "RG-1." For both VM-1 and VM-2 we can see one of the following:
+- a virtual machine
+- a network interface card, or NIC
+- a virtual disk
+- a public IP address
+- a Network Security Group
+
+  There should only be one virtual network or VNet, titled "VM-1."
+  <img src="https://github.com/amaraphi/azure-network-protocols/assets/144752187/13256a3a-6e39-4f17-84e1-87d2a2692360"/>
+
+Alternatively, we can take a look at our network topology with the NetworkWatcher Group. Search for "Network Watcher" in the search bar and click on the first result. On the left, select "Topology." Here we can see the layout of all of our network components which include one VNet, one subnet, and our two virtual machines and their resources.
+
+<img src="https://github.com/amaraphi/azure-network-protocols/assets/144752187/d28abb17-5a6b-4639-b78b-a2a6a6fb7dfb"/>
+
+
+
 <br />
